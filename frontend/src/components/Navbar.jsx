@@ -1,7 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { LogOut, Menu, Bell, User } from 'lucide-react';
 import { useState } from 'react';
+
+const navLinkClass = ({ isActive }) =>
+    isActive
+        ? 'text-primary-600 bg-primary-50 px-3 py-2 rounded-md font-semibold transition-colors duration-150'
+        : 'text-gray-700 hover:text-primary-600 hover:bg-gray-100 px-3 py-2 rounded-md font-medium transition-colors duration-150';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
@@ -22,38 +27,43 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    <div className="hidden md:flex items-center space-x-4">
-                        <Link to="/dashboard" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md font-medium">
+                    <div className="hidden md:flex items-center space-x-1">
+                        <NavLink to="/dashboard" className={navLinkClass}>
                             Dashboard
-                        </Link>
-                        <Link to="/equipment" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md font-medium">
+                        </NavLink>
+                        <NavLink to="/equipment" className={navLinkClass}>
                             Equipment
-                        </Link>
-                        <Link to="/assignments" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md font-medium">
+                        </NavLink>
+                        <NavLink to="/assignments" className={navLinkClass}>
                             Assignments
-                        </Link>
+                        </NavLink>
                         {(user?.role === 'admin' || user?.role === 'hr') && (
                             <>
-                                <Link to="/users" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md font-medium">
+                                <NavLink to="/users" className={navLinkClass}>
                                     Users
-                                </Link>
-                                <Link to="/maintenance" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md font-medium">
+                                </NavLink>
+                                <NavLink to="/maintenance" className={navLinkClass}>
                                     Maintenance
-                                </Link>
-                                <Link to="/analytics" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md font-medium">
+                                </NavLink>
+                                <NavLink to="/analytics" className={navLinkClass}>
                                     Analytics
-                                </Link>
+                                </NavLink>
                             </>
                         )}
                         {user?.role === 'admin' && (
-                            <Link to="/audit" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md font-medium">
+                            <NavLink to="/audit" className={navLinkClass}>
                                 Audit
-                            </Link>
+                            </NavLink>
                         )}
 
-                        <Link to="/notifications" className="p-2 rounded-full hover:bg-gray-100">
-                            <Bell className="w-5 h-5 text-gray-700" />
-                        </Link>
+                        <NavLink
+                            to="/notifications"
+                            className={({ isActive }) =>
+                                `p-2 rounded-full transition-colors duration-150 ${isActive ? 'bg-primary-50 text-primary-600' : 'hover:bg-gray-100 text-gray-700'}`
+                            }
+                        >
+                            <Bell className="w-5 h-5" />
+                        </NavLink>
 
                         <div className="relative">
                             <button
