@@ -173,8 +173,12 @@ const AssignmentList = () => {
 
             {/* Assign Modal */}
             {showAssignModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                    <div className="bg-white rounded-xl max-w-md w-full p-6">
+                <div
+                    className="fixed inset-0 bg-white bg-opacity-20 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+                    style={{ backgroundColor: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(4px)' }}
+                    onClick={() => setShowAssignModal(false)}
+                >
+                    <div className="bg-white rounded-xl max-w-md w-full p-6 border border-gray-300 shadow-2xl" onClick={(e) => e.stopPropagation()}>
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">New Assignment</h2>
 
                         <form onSubmit={handleAssign} className="space-y-4">
@@ -241,8 +245,12 @@ const AssignmentList = () => {
 
             {/* Return Modal */}
             {showReturnModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                    <div className="bg-white rounded-xl max-w-md w-full p-6">
+                <div
+                    className="fixed inset-0 flex items-center justify-center p-4 z-50"
+                    style={{ backgroundColor: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(4px)' }}
+                    onClick={() => { setShowReturnModal(false); setReturnNotes(''); }}
+                >
+                    <div className="bg-white rounded-xl max-w-md w-full p-6 border border-gray-300 shadow-2xl" onClick={(e) => e.stopPropagation()}>
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">Confirm Return</h2>
 
                         <form onSubmit={handleReturnSubmit} className="space-y-4">

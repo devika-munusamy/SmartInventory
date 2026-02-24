@@ -237,8 +237,12 @@ const EquipmentList = () => {
 
             {/* Add Equipment Modal */}
             {showAddModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                    <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
+                <div
+                    className="fixed inset-0 flex items-center justify-center p-4 z-50"
+                    style={{ backgroundColor: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(4px)' }}
+                    onClick={() => setShowAddModal(false)}
+                >
+                    <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 border border-gray-300 shadow-2xl" onClick={(e) => e.stopPropagation()}>
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">Add New Equipment</h2>
 
                         <form onSubmit={handleSubmit} className="space-y-4">
